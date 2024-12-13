@@ -13,7 +13,7 @@ public class main {
        window.add(gamePanel); 
        window.pack(); //sizes the window 
        window.setVisible(true);
-       window.setSize(800, 800);
+       window.setSize(600, 600);
        
        gamePanel.startGameThread(); 
     }
