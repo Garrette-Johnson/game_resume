@@ -2,6 +2,7 @@ package Entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -23,6 +24,8 @@ public class player extends entity{
 		screenX = gp.screenWidth/2 - (gp.tileSize/2); 
 		screenY = gp.screenHeight/2 - (gp.tileSize/2); 
 		
+		solidArea = new Rectangle(8, 17, 10, 16); // you can adjust this to test the collision  the y goes down
+								 //x , y, width, height
 		setDefaultValues();
 		getPlayerImage(); 
 	}
@@ -54,19 +57,41 @@ public class player extends entity{
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 			if(keyH.upPressed == true) { //
 				direction = "up"; 
-				worldY -= speed; 
+				
 			}
 			else if(keyH.downPressed == true) {
 				direction = "down"; 
-				worldY += speed; 
+				
 			}
 			else if(keyH.leftPressed == true) {
 				direction = "left"; 
-				worldX -= speed; 
+				 
 			}
 			else if(keyH.rightPressed == true) {
 				direction = "right"; 
-				worldX += speed; 
+				
+			}  // first we check direction than we check if there is a collision in the next case 
+			
+			// CHECK TILE COLLISION
+			collisionOn = false; 
+			gp.cChecker.checkTile(this); 
+			
+			//If collision is false, player can move
+			if(collisionOn == false) {
+				switch(direction) {
+				case "up": 
+					worldY -= speed; 
+					break; 
+				case "down": 
+					worldY += speed; 
+					break; 
+				case "left": 
+					worldX -= speed;
+					break; 
+				case "right": 
+					worldX += speed; 
+					break; 
+				}
 			}
 			spriteCounter++; 
 			if(spriteCounter > 12) {

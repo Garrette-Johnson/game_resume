@@ -33,6 +33,7 @@ public class Panel extends JPanel implements Runnable{ // inherits panel
 	
 	//This part is for the fps to run in real time 
 	Thread gameThread; //we can start and stop and keeps the program running till you stop it 
+	public CollisionChecker cChecker = new CollisionChecker(this); 
 	public player player = new player(this, KeyH); 
 	
 	public Panel() {
