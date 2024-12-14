@@ -19,6 +19,12 @@ public class Panel extends JPanel implements Runnable{ // inherits panel
 	public final int screenWidth = tileSize * maxScreenCol; // 768 pixels for the width 
 	public final int screenHeight = tileSize * maxScreenRow; // 576 pixels for the height
 	
+	//WORLD SETTINGS
+	public final int maxWorldCol = 50; 
+	public final int maxWorldRow = 50; 
+	public final int worldWidth = tileSize * maxWorldCol; 
+	public final int worldheight = tileSize * maxWorldRow; //change
+	
 	//FPS 
 	int FPS = 60; 
 	
@@ -27,7 +33,7 @@ public class Panel extends JPanel implements Runnable{ // inherits panel
 	
 	//This part is for the fps to run in real time 
 	Thread gameThread; //we can start and stop and keeps the program running till you stop it 
-	player player = new player(this, KeyH); 
+	public player player = new player(this, KeyH); 
 	
 	public Panel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
